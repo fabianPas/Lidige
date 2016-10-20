@@ -9,6 +9,6 @@ namespace Lidige.Map
 {
     public interface IMapConverter
     {
-        IMap Convert(string map);
+        IMap Convert(IMapFile file);
     }
 }

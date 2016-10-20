@@ -8,5 +8,6 @@ namespace Lidige.Map
 {
     public interface IMap
     {
+
     }
 }
