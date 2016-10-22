@@ -41,7 +41,10 @@
     <Compile Include="Main.cs" />
     <Compile Include="Map\IMap.cs" />
     <Compile Include="Map\IMapConverter.cs" />
+    <Compile Include="Map\IMapFile.cs" />
     <Compile Include="Map\Map.cs" />
+    <Compile Include="Map\MapFile.cs" />
+    <Compile Include="Map\MapNotFoundException.cs" />
     <Compile Include="Map\MapRenderer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

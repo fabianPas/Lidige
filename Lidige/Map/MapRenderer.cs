@@ -8,7 +8,7 @@ namespace Lidige.Map
 {
     public class MapRenderer
     {
-        public void Render(IMap map)
+        public void Render(Map map)
         {
 
         }
