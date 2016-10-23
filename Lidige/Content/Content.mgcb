@@ -10,6 +10,12 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\TiledMapPipeline\bin\Debug\TiledMapPipeline.dll
 
 #---------------------------------- Content ---------------------------------#
+
+#begin 1.json
+/importer:
+/processor:
+/build:1.json
 
