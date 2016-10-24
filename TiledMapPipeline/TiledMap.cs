@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace TiledMapPipeline
 {
@@ -9,6 +10,11 @@ namespace TiledMapPipeline
 
         [JsonProperty("height")]
         public int Height;
-        
+
+        [JsonProperty("layers")]
+        public List<TiledLayer> Layers;
+
+        [JsonProperty("tilesets")]
+        public List<TiledTileset> Tilesets;
     }
 }

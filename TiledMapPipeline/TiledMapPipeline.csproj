@@ -55,6 +55,7 @@
     <Compile Include="TiledLayer.cs" />
     <Compile Include="TiledMap.cs" />
     <Compile Include="TiledMapImporter.cs" />
+    <Compile Include="TiledTileset.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

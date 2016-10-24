@@ -20,7 +20,9 @@ namespace TiledMapPipeline
             using (var file = File.OpenText(filename))
             {
                 var serializer = new JsonSerializer();
-                return (TiledMap) serializer.Deserialize(file, typeof (TiledMap));
+                var serializedMap = (TiledMap) serializer.Deserialize(file, typeof (TiledMap));
+
+                return serializedMap;
             }
         }
     }
