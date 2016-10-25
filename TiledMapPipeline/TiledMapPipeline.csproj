@@ -55,10 +55,19 @@
     <Compile Include="TiledLayer.cs" />
     <Compile Include="TiledMap.cs" />
     <Compile Include="TiledMapImporter.cs" />
+    <Compile Include="TiledMapProcessor.cs" />
+    <Compile Include="TiledMapProcessorResult.cs" />
+    <Compile Include="TiledMapWriter.cs" />
     <Compile Include="TiledTileset.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lidige\Lidige.csproj">
+      <Project>{5A92D9D2-BDD5-47A4-B169-CB8BBEA56608}</Project>
+      <Name>Lidige</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

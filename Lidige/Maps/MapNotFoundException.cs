@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lidige.Map
+namespace Lidige.Maps
 {
     public class MapNotFoundException : Exception
     {

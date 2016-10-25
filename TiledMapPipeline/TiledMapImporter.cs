@@ -14,9 +14,6 @@ namespace TiledMapPipeline
         public override TiledMap Import(string filename, ContentImporterContext context)
         {
             context.Logger.LogMessage("Importing JSON map: {0}", filename);
-
-            Debugger.Launch();
-
             using (var file = File.OpenText(filename))
             {
                 var serializer = new JsonSerializer();

@@ -1,4 +1,5 @@
-﻿using Lidige.Map;
+﻿using Lidige.Maps;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,6 +13,9 @@ namespace Lidige
     {
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
+
+        MapRenderer _mapRenderer;
+        Map _map;
 
         public Main()
         {
@@ -40,6 +44,10 @@ namespace Lidige
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _mapRenderer = new MapRenderer(_spriteBatch);
+
+
+            _map = Content.Load<Map>("1");
 
             // TODO: use this.Content to load your game content here
         }
@@ -76,7 +84,7 @@ namespace Lidige
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _mapRenderer.Render(_map);
 
             base.Draw(gameTime);
         }
