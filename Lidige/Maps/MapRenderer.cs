@@ -11,30 +11,36 @@ namespace Lidige.Maps
     public class MapRenderer
     {
         private SpriteBatch _spriteBatch;
+        private Camera _camera;
 
-        public MapRenderer(SpriteBatch spriteBatch)
+        public MapRenderer(SpriteBatch spriteBatch, Camera camera)
         {
             _spriteBatch = spriteBatch;
+            _camera = camera;
         }
 
         public void Render(Map map)
         {
             var tileset = map.Tilesets.First();
 
-            var tileX = 0;
-            var tileY = 0;
+            _spriteBatch.Begin(transformMatrix: _camera.GetViewMatrix());
 
-            _spriteBatch.Begin();
-
-            foreach(var layer in map.Layers)
+            foreach (var layer in map.Layers)
             {
-                foreach(var tile in layer.Tiles)
+                for (int y = 0; y < 64; y++)
                 {
-                    
-                    var sourceY = (int)Math.Ceiling((decimal)tile / tileset.Width) - 1;
-                    var sourceX = tile - (tileset.Width * sourceY) - 1;
+                    for (int x = 0; x < 64; x++)
+                    {
+                        var tile = layer.Tiles[x * y];
 
-                    _spriteBatch.Draw(tileset.Texture, new Vector2(0, 0), new Rectangle(sourceX, sourceY, 32, 32));
+                        if (tile == 0)
+                            continue;
+
+                        var sourceX = (tile % (tileset.Width / 32) - 1) * 32;
+                        var sourceY = tile / (tileset.Width / 32) * 32;
+
+                        _spriteBatch.Draw(tileset.Texture, new Rectangle(x * 32, y * 32, 32, 32), new Rectangle(sourceX, sourceY, 32, 32), Color.White);
+                    }
                 }
             }
 

@@ -14,6 +14,8 @@ namespace Lidige
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
 
+        Camera _camera;
+
         MapRenderer _mapRenderer;
         Map _map;
 
@@ -21,6 +23,7 @@ namespace Lidige
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
         }
 
         /// <summary>
@@ -31,7 +34,12 @@ namespace Lidige
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            IsMouseVisible = true;
+
+            _graphics.PreferredBackBufferWidth = 1024;
+            _graphics.PreferredBackBufferHeight = 800;
+
+            _camera = new Camera(GraphicsDevice.Viewport);
 
             base.Initialize();
         }
@@ -44,7 +52,7 @@ namespace Lidige
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _mapRenderer = new MapRenderer(_spriteBatch);
+            _mapRenderer = new MapRenderer(_spriteBatch, _camera);
 
 
             _map = Content.Load<Map>("1");
@@ -71,7 +79,28 @@ namespace Lidige
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            var keyboardState = Keyboard.GetState();
+
+            // rotation
+            if (keyboardState.IsKeyDown(Keys.Q))
+                _camera.Rotation -= deltaTime;
+
+            if (keyboardState.IsKeyDown(Keys.W))
+                _camera.Rotation += deltaTime;
+
+            // movement
+            if (keyboardState.IsKeyDown(Keys.Up))
+                _camera.Position -= new Vector2(0, 250) * deltaTime;
+
+            if (keyboardState.IsKeyDown(Keys.Down))
+                _camera.Position += new Vector2(0, 250) * deltaTime;
+
+            if (keyboardState.IsKeyDown(Keys.Left))
+                _camera.Position -= new Vector2(250, 0) * deltaTime;
+
+            if (keyboardState.IsKeyDown(Keys.Right))
+                _camera.Position += new Vector2(250, 0) * deltaTime;
 
             base.Update(gameTime);
         }
