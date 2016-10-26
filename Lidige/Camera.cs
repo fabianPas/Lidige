@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace Lidige
 {
+
+    //http://gamedev.stackexchange.com/questions/59301/xna-2d-camera-scrolling-why-use-matrix-transform
     public class Camera
     {
         private readonly Viewport _viewport;
