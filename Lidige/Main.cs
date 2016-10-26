@@ -18,6 +18,7 @@ namespace Lidige
 
         MapRenderer _mapRenderer;
         Map _map;
+        
 
         public Main()
         {
