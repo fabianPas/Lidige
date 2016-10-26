@@ -50,10 +50,10 @@ namespace Lidige.Maps
                     if (tile == 0)
                         continue;
 
-                    var sourceX = (tile % (tileset.Width / 32) - 1) * 32;
-                    var sourceY = tile / (tileset.Width / 32) * 32;
+                    var sourceX = (tile - 1) % (tileset.Width / 32);
+                    var sourceY = (tile - 1) / (tileset.Width / 32);
 
-                    _spriteBatch.Draw(tileset.Texture, new Rectangle(x * 32, y * 32, 32, 32), new Rectangle(sourceX, sourceY, 32, 32), Color.White);
+                    _spriteBatch.Draw(tileset.Texture, new Rectangle(x * 32, y * 32, 32, 32), new Rectangle(sourceX * 32, sourceY * 32, 32, 32), Color.White);
                 }
             }
         }

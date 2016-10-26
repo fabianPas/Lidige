@@ -42,8 +42,8 @@ namespace Lidige.Maps
                 var tilesetHeight = input.ReadInt32();
                 var tilesetImage = input.ReadString();
 
-                // @TODO Manage tileset image and names correctly
-                var texture = input.ContentManager.Load<Texture2D>(tilesetImage.Replace(".bmp", ""));
+                // @TODO Manage tilesets and images and names correctly
+                var texture = input.ContentManager.Load<Texture2D>("Tilesets/" + tilesetImage.Replace(".png", ""));
                 var tileset = new Tileset(tilesetWidth, tilesetHeight, texture);
 
                 map.Tilesets.Add(tileset);

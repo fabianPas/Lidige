@@ -14,12 +14,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin 1.json
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:1.json
-
-#begin tileset_1.bmp
+#begin Tilesets/1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -29,5 +24,22 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:tileset_1.bmp
+/build:Tilesets/1.png
+
+#begin Sprites/0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/0.png
+
+#begin Maps/1.json
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Maps/1.json
 

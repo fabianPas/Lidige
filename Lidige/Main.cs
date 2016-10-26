@@ -55,7 +55,7 @@ namespace Lidige
             _mapRenderer = new MapRenderer(_spriteBatch, _camera);
 
 
-            _map = Content.Load<Map>("1");
+            _map = Content.Load<Map>("Maps/1");
 
             // TODO: use this.Content to load your game content here
         }

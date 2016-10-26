@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lidige\Lidige.csproj">
-      <Project>{5A92D9D2-BDD5-47A4-B169-CB8BBEA56608}</Project>
+      <Project>{5a92d9d2-bdd5-47a4-b169-cb8bbea56608}</Project>
       <Name>Lidige</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,6 +1,4 @@
-﻿using Lidige.Maps;
-
-using Microsoft.Xna.Framework.Content.Pipeline;
+﻿using Microsoft.Xna.Framework.Content.Pipeline;
 using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
 
 namespace TiledMapPipeline
