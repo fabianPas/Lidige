@@ -21,30 +21,41 @@ namespace Lidige.Maps
 
         public void Render(Map map)
         {
-            var tileset = map.Tilesets.First();
-
             _spriteBatch.Begin(transformMatrix: _camera.GetViewMatrix());
 
-            foreach (var layer in map.Layers)
-            {
-                for (int y = 0; y < 64; y++)
-                {
-                    for (int x = 0; x < 64; x++)
-                    {
-                        var tile = layer.Tiles[x * y];
+            RenderLayer(map, "Ground");
 
-                        if (tile == 0)
-                            continue;
+            RenderLayer(map, "Mask 1");
+            RenderLayer(map, "Mask 2");
 
-                        var sourceX = (tile % (tileset.Width / 32) - 1) * 32;
-                        var sourceY = tile / (tileset.Width / 32) * 32;
-
-                        _spriteBatch.Draw(tileset.Texture, new Rectangle(x * 32, y * 32, 32, 32), new Rectangle(sourceX, sourceY, 32, 32), Color.White);
-                    }
-                }
-            }
+            RenderLayer(map, "Fringe 1");
+            RenderLayer(map, "Fringe 2");
 
             _spriteBatch.End();
+        }
+
+        public void RenderLayer(Map map, string name)
+        {
+            var tileset = map.Tilesets.First();
+            var layer = map.GetLayer(name);
+
+            var sourceIndex = 0;
+
+            for (int y = 0; y < 64; y++)
+            {
+                for (int x = 0; x < 64; x++)
+                {
+                    var tile = layer.Tiles[sourceIndex++];
+
+                    if (tile == 0)
+                        continue;
+
+                    var sourceX = (tile % (tileset.Width / 32) - 1) * 32;
+                    var sourceY = tile / (tileset.Width / 32) * 32;
+
+                    _spriteBatch.Draw(tileset.Texture, new Rectangle(x * 32, y * 32, 32, 32), new Rectangle(sourceX, sourceY, 32, 32), Color.White);
+                }
+            }
         }
     }
 }

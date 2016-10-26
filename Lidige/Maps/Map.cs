@@ -20,6 +20,11 @@ namespace Lidige.Maps
             _height = height;
         }
 
+        public Layer GetLayer(string name)
+        {
+            return _layers.Where(x => x.Name == name).First();
+        }
+
         public List<Layer> Layers
         {
             get { return _layers; }
