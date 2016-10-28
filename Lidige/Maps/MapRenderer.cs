@@ -38,7 +38,6 @@ namespace Lidige.Maps
             var left = Math.Max((int)Math.Floor(_camera.Position.X / 32), 0);
             var right = Math.Min(left + (1024 / 32) + 2, 64);
 
-
             for (int y = top; y < bottom; y++)
             {
                 for (int x = left; x < right; x++)
