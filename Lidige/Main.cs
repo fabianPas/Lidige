@@ -83,13 +83,6 @@ namespace Lidige
             var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             var keyboardState = Keyboard.GetState();
 
-            // rotation
-            if (keyboardState.IsKeyDown(Keys.Q))
-                _camera.Rotation -= deltaTime;
-
-            if (keyboardState.IsKeyDown(Keys.W))
-                _camera.Rotation += deltaTime;
-
             // movement
             if (keyboardState.IsKeyDown(Keys.Up))
                 _camera.Position -= new Vector2(0, 250) * deltaTime;
@@ -112,9 +105,15 @@ namespace Lidige
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
+
+            var matrix = _camera.GetViewMatrix();
+
+            _spriteBatch.Begin(sortMode: SpriteSortMode.Deferred, blendState: BlendState.AlphaBlend, transformMatrix: matrix);
 
             _mapRenderer.Render(_map);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

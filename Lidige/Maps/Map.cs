@@ -22,7 +22,9 @@ namespace Lidige.Maps
 
         public Layer GetLayer(string name)
         {
-            return _layers.Where(x => x.Name == name).First();
+            return _layers
+                .Where(x => x.Name == name)
+                .First();
         }
 
         public List<Layer> Layers

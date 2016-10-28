@@ -23,15 +23,21 @@ namespace Lidige.Maps
                 var layerName = input.ReadString();
                 var tileCount = input.ReadInt32();
 
-                var tiles = new List<int>();
+                var layerTiles = new int[width][];
+
+                for (int k = 0; k < height; k++)
+                    layerTiles[k] = new int[height];
 
                 for(int j = 0; j < tileCount; j++)
                 {
                     var tileId = input.ReadInt32();
-                    tiles.Add(tileId);
+
+                    var x = j % width;
+                    var y = j / width;
+                    layerTiles[x][y] = tileId;
                 }
 
-                var layer = new Layer(layerName, tiles);
+                var layer = new Layer(layerName, layerTiles);
                 map.Layers.Add(layer);
             }
 

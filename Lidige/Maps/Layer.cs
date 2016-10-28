@@ -9,15 +9,15 @@ namespace Lidige.Maps
     public class Layer
     {
         private string _name;
-        private List<int> _tiles;
+        private int[][] _tiles;
 
-        public Layer(string name, List<int> tiles)
+        public Layer(string name, int[][] tiles)
         {
             _name = name;
             _tiles = tiles;
         }
 
-        public List<int> Tiles
+        public int[][] Tiles
         {
             get { return _tiles; }
         }

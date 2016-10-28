@@ -1,10 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lidige.Maps
 {
@@ -21,8 +18,6 @@ namespace Lidige.Maps
 
         public void Render(Map map)
         {
-            _spriteBatch.Begin(transformMatrix: _camera.GetViewMatrix());
-
             RenderLayer(map, "Ground");
 
             RenderLayer(map, "Mask 1");
@@ -30,8 +25,6 @@ namespace Lidige.Maps
 
             RenderLayer(map, "Fringe 1");
             RenderLayer(map, "Fringe 2");
-
-            _spriteBatch.End();
         }
 
         public void RenderLayer(Map map, string name)
@@ -39,13 +32,18 @@ namespace Lidige.Maps
             var tileset = map.Tilesets.First();
             var layer = map.GetLayer(name);
 
-            var sourceIndex = 0;
+            var top = Math.Max((int)Math.Floor(_camera.Position.Y / 32), 0);
+            var bottom = Math.Min(top + (800 / 32) + 2, 64);
 
-            for (int y = 0; y < 64; y++)
+            var left = Math.Max((int)Math.Floor(_camera.Position.X / 32), 0);
+            var right = Math.Min(left + (1024 / 32) + 2, 64);
+
+
+            for (int y = top; y < bottom; y++)
             {
-                for (int x = 0; x < 64; x++)
+                for (int x = left; x < right; x++)
                 {
-                    var tile = layer.Tiles[sourceIndex++];
+                    var tile = layer.Tiles[x][y];
 
                     if (tile == 0)
                         continue;
