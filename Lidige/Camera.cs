@@ -29,12 +29,19 @@ namespace Lidige
 
         public Matrix GetViewMatrix()
         {
+            //http://gamedev.stackexchange.com/questions/70403/how-do-i-ensure-that-my-2d-side-scroller-camera-stays-within-the-world-bounds
+            if (_position.X < 0)
+                _position.X = 0;
+
+            if (_position.Y < 0)
+                _position.Y = 0;
+
             return
-                Matrix.CreateTranslation(new Vector3(-Position, 0.0f)) *
-                Matrix.CreateTranslation(new Vector3(-Origin, 0.0f)) *
-                Matrix.CreateRotationZ(Rotation) *
-                Matrix.CreateScale(Zoom, Zoom, 1) *
-                Matrix.CreateTranslation(new Vector3(Origin, 0.0f));
+                Matrix.CreateTranslation(new Vector3(-_position, 0.0f)) *
+                Matrix.CreateTranslation(new Vector3(-_origin, 0.0f)) *
+                Matrix.CreateRotationZ(_rotation) *
+                Matrix.CreateScale(_zoom, _zoom, 1) *
+                Matrix.CreateTranslation(new Vector3(_origin, 0.0f));
         }
 
         public Vector2 Position {
