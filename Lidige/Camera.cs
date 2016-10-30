@@ -29,16 +29,7 @@ namespace Lidige
 
         public Matrix GetViewMatrix()
         {
-            var screenWidth = 1024;
-            var screenHeight = 800;
-
-            var maximumX = (32 * 64) - (screenWidth);
-            var maximumY = (32 * 64) - (screenHeight);
-
-            var maximumPos = new Vector2(maximumX, maximumY);
-            var minimumPos = new Vector2(0, 0);
-
-            _position = Vector2.Clamp(_position, minimumPos, maximumPos);
+           
 
             return
                 Matrix.CreateTranslation(new Vector3(-_position, 0.0f)) *
@@ -56,7 +47,16 @@ namespace Lidige
 
             set
             {
-                _position = value;
+                var screenWidth = 1024;
+                var screenHeight = 800;
+
+                var maximumX = (32 * 64) - (screenWidth);
+                var maximumY = (32 * 64) - (screenHeight);
+
+                var maximumPos = new Vector2(maximumX, maximumY);
+                var minimumPos = new Vector2(0, 0);
+
+                _position = Vector2.Clamp(value, minimumPos, maximumPos);
             }
         }
 
