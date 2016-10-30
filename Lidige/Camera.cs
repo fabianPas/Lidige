@@ -29,20 +29,16 @@ namespace Lidige
 
         public Matrix GetViewMatrix()
         {
-            //http://gamedev.stackexchange.com/questions/70403/how-do-i-ensure-that-my-2d-side-scroller-camera-stays-within-the-world-bounds
-            var size = 32 * 64 / 2;
+            var screenWidth = 1024;
+            var screenHeight = 800;
 
-            if (_position.X < 0)
-                _position.X = 0;
+            var maximumX = (32 * 64) - (screenWidth);
+            var maximumY = (32 * 64) - (screenHeight);
 
-            if (_position.X > size)
-                _position.X = size;
+            var maximumPos = new Vector2(maximumX, maximumY);
+            var minimumPos = new Vector2(0, 0);
 
-            if (_position.Y < 0)
-                _position.Y = 0;
-
-            if (_position.Y > size)
-                _position.Y = size;
+            _position = Vector2.Clamp(_position, minimumPos, maximumPos);
 
             return
                 Matrix.CreateTranslation(new Vector3(-_position, 0.0f)) *
