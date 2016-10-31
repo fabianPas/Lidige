@@ -29,8 +29,6 @@ namespace Lidige
 
         public Matrix GetViewMatrix()
         {
-           
-
             return
                 Matrix.CreateTranslation(new Vector3(-_position, 0.0f)) *
                 Matrix.CreateTranslation(new Vector3(-_origin, 0.0f)) *
