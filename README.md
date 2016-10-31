@@ -4,4 +4,4 @@ Over the years I have attempted to set up multiple 2D online RPGs and to be hone
 
 ![Seiken Densetsu 3](http://1.bp.blogspot.com/-fVbr1OGmWIQ/UIg7FQkRDgI/AAAAAAAAFEk/GCxNlCgAOGw/s1600/35238-Seiken_Densetsu_3.png)
 
-WIP
+This project is a work in progress.
