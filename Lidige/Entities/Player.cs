@@ -17,13 +17,11 @@ namespace Lidige.Entities
 
     public class Player
     {
-        private Texture2D _texture;
+        private readonly Texture2D _texture;
         private Vector2 _position = new Vector2(0, 0);
-
-        // http://gamedev.stackexchange.com/questions/34365/how-can-i-accomplish-pokemon-style-movement-over-tiles-in-java
-        private float _duration = 0.25f;
-        private float _t;
         private Vector2 _targetPosition;
+
+        private const float Duration = 3f;
 
         public Player(Texture2D texture)
         {
@@ -32,8 +30,8 @@ namespace Lidige.Entities
 
         public void Update(float delta)
         {
-            _t = delta / _duration;
-            _position = _position + (_targetPosition - _position) * _t;
+            var t = Duration * delta;
+            _position = _position + (_targetPosition - _position) * t;
         }
 
         public void Move(Direction direction)
