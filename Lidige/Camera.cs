@@ -37,6 +37,11 @@ namespace Lidige
                 Matrix.CreateTranslation(new Vector3(_origin, 0.0f));
         }
 
+        public void LookAt(Vector2 position)
+        {
+            Position = (position * 32) - new Vector2(_viewport.Width / 2.0f, _viewport.Height / 2.0f);
+        }
+
         public Vector2 Position {
             get
             {

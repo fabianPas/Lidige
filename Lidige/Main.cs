@@ -1,4 +1,5 @@
-﻿using Lidige.Maps;
+﻿using Lidige.Entities;
+using Lidige.Maps;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,7 +19,7 @@ namespace Lidige
 
         MapRenderer _mapRenderer;
         Map _map;
-        
+        Player _player;
 
         public Main()
         {
@@ -53,7 +54,10 @@ namespace Lidige
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _mapRenderer = new MapRenderer(_spriteBatch, _camera);
+
+            _player = new Player(Content.Load<Texture2D>("Sprites/0"));
+
+            _mapRenderer = new MapRenderer(_spriteBatch, _camera, _player);
 
             _map = Content.Load<Map>("Maps/1");
 
@@ -80,20 +84,25 @@ namespace Lidige
                 Exit();
 
             var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _player.Update(deltaTime);
+
             var keyboardState = Keyboard.GetState();
 
-            // movement
-            if (keyboardState.IsKeyDown(Keys.Up))
-                _camera.Position -= new Vector2(0, 250) * deltaTime;
-
             if (keyboardState.IsKeyDown(Keys.Down))
-                _camera.Position += new Vector2(0, 250) * deltaTime;
+                _player.Move(Direction.Down);
+
+            if (keyboardState.IsKeyDown(Keys.Up))
+                _player.Move(Direction.Up);
 
             if (keyboardState.IsKeyDown(Keys.Left))
-                _camera.Position -= new Vector2(250, 0) * deltaTime;
+                _player.Move(Direction.Left);
 
             if (keyboardState.IsKeyDown(Keys.Right))
-                _camera.Position += new Vector2(250, 0) * deltaTime;
+                _player.Move(Direction.Right);
+
+
+            _camera.LookAt(_player.Position);
+            //_camera.Position = Vector2.Lerp(_camera.Position, _player.Position, 0.5f);
 
             base.Update(gameTime);
         }
@@ -108,7 +117,7 @@ namespace Lidige
 
             var matrix = _camera.GetViewMatrix();
 
-            _spriteBatch.Begin(sortMode: SpriteSortMode.Deferred, blendState: BlendState.AlphaBlend, transformMatrix: matrix);
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: matrix);
 
             _mapRenderer.Render(_map);
 

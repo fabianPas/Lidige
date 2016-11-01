@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Lidige.Entities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Linq;
@@ -9,10 +10,12 @@ namespace Lidige.Maps
     {
         private SpriteBatch _spriteBatch;
         private Camera _camera;
+        private Player _player;
 
-        public MapRenderer(SpriteBatch spriteBatch, Camera camera)
+        public MapRenderer(SpriteBatch spriteBatch, Camera camera, Player player)
         {
             _spriteBatch = spriteBatch;
+            _player = player;
             _camera = camera;
         }
 
@@ -22,6 +25,8 @@ namespace Lidige.Maps
 
             RenderLayer(map, "Mask 1");
             RenderLayer(map, "Mask 2");
+
+            _player.Draw(_spriteBatch);
 
             RenderLayer(map, "Fringe 1");
             RenderLayer(map, "Fringe 2");
@@ -43,9 +48,6 @@ namespace Lidige.Maps
                 for (int x = left; x < right; x++)
                 {
                     var tile = layer.Tiles[x][y];
-
-                    if (tile == 0)
-                        continue;
 
                     var sourceX = (tile - 1) % (tileset.Width / 32);
                     var sourceY = (tile - 1) / (tileset.Width / 32);
